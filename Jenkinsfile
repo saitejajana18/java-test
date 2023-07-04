@@ -28,18 +28,19 @@ pipeline {
             }
         }
         stage("Quality Gate") {
-    steps {
-        script {
-            try {
-                
-                    waitForQualityGate abortPipeline: true
+            steps {
+                script {
+                    try {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            waitForQualityGate abortPipeline: true
+                        }
+                    }
+                    catch (Exception ex) {
+
+                    }
                 }
-             catch (Exception ex) {
-                
             }
         }
-    }
-}
 
 
         stage('Push') {
