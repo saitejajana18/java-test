@@ -27,6 +27,20 @@ pipeline {
                 }
             }
         }
+        stage("Quality Gate") {
+    steps {
+        script {
+            try {
+                
+                    waitForQualityGate abortPipeline: true
+                }
+             catch (Exception ex) {
+                
+            }
+        }
+    }
+}
+
 
         stage('Push') {
             steps {
