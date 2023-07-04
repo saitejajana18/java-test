@@ -18,7 +18,7 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<sonar.projectkey>saitejajana18</sonar.projectkey>
+		<sonar.projectKey>saitejajana18</sonar.projectKey>
 		<sonar.organization>saitejajana18</sonar.organization>
 	</properties>
 	<dependencies>
