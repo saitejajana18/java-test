@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        function_name="test-java-app"
+        function_name="deploylambda18"
     }
 
     stages {
@@ -12,12 +12,27 @@ pipeline {
                 sh 'mvn package'
             }
         }
+         stage("SonarQube analysis") {
+            agent any
+
+            when {
+                anyOf {
+                    branch 'feature/*'
+                    branch 'main'
+                }
+            }
+            steps {
+                withSonarQubeEnv('Sonar') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
 
         stage('Push') {
             steps {
                 echo 'Push'
 
-                sh "aws s3 cp target/sample-1.0.3.jar s3://java-app-deploy-bucket-jenkins"
+                sh "aws s3 cp target/sample-1.0.3.jar s3://deploybucket18"
             }
         }
 
@@ -25,7 +40,7 @@ pipeline {
             steps {
                 echo 'Build'
 
-                sh "aws lambda update-function-code --function-name $function_name --region us-east-1 --s3-bucket java-app-deploy-bucket-jenkins --s3-key sample-1.0.3.jar"
+                sh "aws lambda update-function-code --function-name $function_name --region us-east-2 --s3-bucket deploybucket18 --s3-key sample-1.0.3.jar"
             }
         }
     }
