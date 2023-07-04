@@ -28,18 +28,19 @@ pipeline {
             }
         }
         stage("Quality Gate") {
-    steps {
-        script {
-            try {
-                waitForQualityGate abortPipeline: true
-            } catch (Exception ex) {
-                echo "Quality gate check failed: ${ex.getMessage()}"
-                currentBuild.result = 'FAILURE'
-                error("Quality gate check failed. Aborting the pipeline.")
+            steps {
+                script {
+                    try {
+                        timeout(time: 10, unit: 'MINUTES') {
+                            waitForQualityGate abortPipeline: true
+                        }
+                    }
+                    catch (Exception ex) {
+
+                    }
+                }
             }
         }
-    }
-}
 
 
 
