@@ -1,5 +1,5 @@
 FROM maven:3.5.4-jdk-8-alpine as packagee
-WORKDIR /application-3.0
+WORKDIR /application-4.0
 COPY ./pom.xml ./pom.xml
 COPY ./src ./src
 RUN mvn clean package
