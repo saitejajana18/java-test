@@ -6,5 +6,5 @@ FROM java:openjdk-8
 FROM tomcat:latest
 WORKDIR /application-6.0
 EXPOSE 1800
-COPY --from=packagee target/sample-*.jar ./sample.jar .
-CMD ["java", "-jar", "./sample.jar"]
+COPY --from=packagee target/sample-*.jar .
+CMD ["java", "-jar", "./sample-1.0.3.jar"]
