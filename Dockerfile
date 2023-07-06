@@ -1,8 +1,7 @@
 FROM maven:3.3-jdk-8-alpine as packagee
-WORKDIR /application
+WORKDIR /application-1.0
 COPY ./pom.xml ./pom.xml
 COPY ./src ./src
-RUN mvn install
 RUN mvn clean package
 FROM java:openjdk-8
 FROM tomcat:latest
