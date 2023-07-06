@@ -6,5 +6,5 @@ RUN mvn clean package
 FROM java:openjdk-8
 FROM tomcat:latest
 EXPOSE 4800
-COPY --from=packagee target/sample-*.jar ./sample-1.jar .
+COPY --from=packagee target/sample-*.jar ./sample.jar .
 CMD ["java", "-jar", "./sample-1.0.3.jar"]
