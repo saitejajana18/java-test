@@ -6,6 +6,6 @@ FROM openjdk:11-jre
 WORKDIR /application-6.0
 EXPOSE 1900
 COPY --from=packagee ./target/sample-*.jar .
-CMD ["java", "-jar", "./sample-1.0.3.jar"]
+CMD ["java", "-jar", "/application-6,0/sample-1.0.3.jar"]
 
 
